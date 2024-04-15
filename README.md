@@ -7,14 +7,14 @@ Na próxima sprint, com base nas informações adicionais que recebermos, iremos
 
 Algumas explicações em relação aos atributos da entidade Customer:
 
-ID: Este é o identificador único para cada cliente. É necessário para distinguir cada cliente de forma única.
-Nome: O nome da empresa cliente. É importante também para identificar a empresa.
-Setor: O setor de atuação da empresa cliente. Este atributo pode ser útil para o modelo de aprendizado profundo, pois empresas de diferentes setores podem ter diferentes padrões de churn.
-Tamanho: O tamanho da empresa cliente (por exemplo, número de funcionários). Este é outro atributo que pode influenciar a previsão de churn, pois empresas de diferentes tamanhos podem ter diferentes necessidades e comportamentos.
-Localização: A localização geográfica da empresa cliente. A localização pode afetar a previsão de churn, pois empresas em diferentes locais podem enfrentar diferentes condições de mercado.
-Data_Contrato: A data de início do contrato com a empresa cliente. Este atributo pode ser útil para entender a duração do relacionamento com o cliente.
-Valor_Contrato: O valor financeiro do contrato com a empresa cliente. Este é um indicador importante do valor do cliente para a empresa.
-Interacoes: O número de interações com a empresa cliente. Este atributo pode ser um indicador do nível de engajamento do cliente com a Plusoft.
-Status_Churn: O status de churn da empresa cliente. Este é o atributo de destino para a previsão de churn.
+* ID: Este é o identificador único para cada cliente. É necessário para distinguir cada cliente de forma única.
+* Nome: O nome da empresa cliente. É importante também para identificar a empresa.
+* Setor: O setor de atuação da empresa cliente. Este atributo pode ser útil para o modelo de aprendizado profundo, pois empresas de diferentes setores podem ter diferentes padrões de churn.
+* Tamanho: O tamanho da empresa cliente (por exemplo, número de funcionários). Este é outro atributo que pode influenciar a previsão de churn, pois empresas de diferentes tamanhos podem ter diferentes necessidades e comportamentos.
+* Localização: A localização geográfica da empresa cliente. A localização pode afetar a previsão de churn, pois empresas em diferentes locais podem enfrentar diferentes condições de mercado.
+* Data_Contrato: A data de início do contrato com a empresa cliente. Este atributo pode ser útil para entender a duração do relacionamento com o cliente.
+* Valor_Contrato: O valor financeiro do contrato com a empresa cliente. Este é um indicador importante do valor do cliente para a empresa.
+* Interacoes: O número de interações com a empresa cliente. Este atributo pode ser um indicador do nível de engajamento do cliente com a Plusoft.
+* Status_Churn: O status de churn da empresa cliente. Este é o atributo de destino para a previsão de churn.
 
 ...
