@@ -5,7 +5,7 @@ Nesse momento foi escolhida apenas uma entidade: Customer. Isso se deve ao fato 
 
 Na próxima sprint, com base nas informações adicionais que recebermos, iremos expandir o modelo para incluir mais entidades e relacionamentos e alterar seus atributos e constraints como for necessário. Isso nos permitirá construir uma API mais completa e robusta que pode lidar com uma variedade maior de casos de uso e fornecer dados mais ricos para o modelo de aprendizado profundo.
 
-Algumas explicações em relação aos atributos da entidade **Customer**:
+Algumas explicações em relação aos atributos da entidade **Customer** pensados nesse primeiro momento:
 
 * ID: Este é o identificador único para cada cliente. É necessário para distinguir cada cliente de forma única.
 * Nome: O nome da empresa cliente. É importante também para identificar a empresa.
