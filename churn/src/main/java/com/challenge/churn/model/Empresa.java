@@ -1,6 +1,7 @@
 package com.challenge.churn.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Date;
 import java.util.List;
@@ -12,8 +13,10 @@ public class Empresa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    @NotBlank(message = "O nome da empresa não pode estar vazio")
     private String nome;
     @Column
+    @NotBlank(message = "O endereço da empresa não pode estar vazio")
     private String endereco;
 
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)

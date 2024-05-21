@@ -1,6 +1,7 @@
 package com.challenge.churn.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -11,8 +12,10 @@ public class ChurnPrediction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    @NotNull(message = "A probabilidade de churn não pode ser nula")
     private Double probabilidadeChurn;
     @Column
+    @NotNull(message = "A data de predição não pode ser nula")
     private Date dataPredicao;
 
     @ManyToOne

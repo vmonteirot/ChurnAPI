@@ -1,6 +1,7 @@
 package com.challenge.churn.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -11,8 +12,10 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    @NotNull(message = "O valor da transação não pode ser nulo")
     private Double valor;
     @Column
+    @NotNull(message = "A data da transação não pode ser nula")
     private Date data;
 
     @ManyToOne
