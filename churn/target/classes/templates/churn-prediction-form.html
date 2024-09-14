@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${churnPrediction.id == null} ? 'Nova Previsão de Churn' : 'Editar Previsão de Churn'"></title>
+</head>
+<body>
+<h1 th:text="${churnPrediction.id == null} ? 'Adicionar Nova Previsão de Churn' : 'Editar Previsão de Churn'"></h1>
+<form th:action="@{${churnPrediction.id == null} ? '/churn-prediction/criar' : '/churn-prediction/atualizar/' + ${churnPrediction.id}}" method="post">
+    <label for="cliente">Cliente:</label>
+    <input type="text" id="cliente" name="cliente" th:value="${churnPrediction.cliente.id}" required>
+
+    <label for="probabilidadeChurn">Probabilidade de Churn:</label>
+    <input type="number" id="probabilidadeChurn" name="probabilidadeChurn" step="0.01" th:value="${churnPrediction.probabilidadeChurn}" required>
+
+    <label for="dataPredicao">Data de Previsão:</label>
+    <input type="date" id="dataPredicao" name="dataPredicao" th:value="${#dates.format(churnPrediction.dataPredicao, 'yyyy-MM-dd')}" required>
+
+    <button type="submit" th:text="${churnPrediction.id == null} ? 'Salvar' : 'Atualizar'"></button>
+</form>
+<a href="/churn-prediction">Voltar</a>
+</body>
+</html>

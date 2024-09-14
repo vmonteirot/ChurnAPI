@@ -3,42 +3,81 @@ package com.challenge.churn.controller;
 import com.challenge.churn.model.Cliente;
 import com.challenge.churn.repo.ClienteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ClienteController {
 
     @Autowired
     private ClienteRepo clienteRepo;
 
-    @GetMapping(value = "/cliente")
-    public List<Cliente> getClientes(){
-        return clienteRepo.findAll();
+    @GetMapping(value = "/clientes")
+    public String listClientes(Model model) {
+        List<Cliente> clientes = clienteRepo.findAll();
+        model.addAttribute("clientes", clientes);
+        return "clientes";
     }
 
     @GetMapping(value = "/cliente/{id}")
-    public Cliente getClientes(@PathVariable long id){
-        return clienteRepo.findById(id).get();
+    public String getCliente(@PathVariable long id, Model model) {
+        Cliente cliente = clienteRepo.findById(id).orElse(null);
+        if (cliente != null) {
+            model.addAttribute("cliente", cliente);
+            return "cliente-detail";
+        } else {
+            return "404"; // Certifique-se de ter um template 404.html
+        }
+    }
+
+    @GetMapping(value = "/cliente/create")
+    public String createClienteForm(Model model) {
+        model.addAttribute("cliente", new Cliente());
+        return "cliente-form";
     }
 
     @PostMapping(value = "/cliente/create")
-    public void saveCliente(@RequestBody Cliente cliente){
+    public String saveCliente(@ModelAttribute Cliente cliente) {
         clienteRepo.save(cliente);
+        return "redirect:/clientes";
     }
 
-    @PutMapping(value = "/cliente/update/{id}")
-    public void updateCliente(@PathVariable long id, @RequestBody Cliente cliente){
-        Cliente updatedCliente = clienteRepo.findById(id).get();
-        updatedCliente.setNome(cliente.getNome());
-        updatedCliente.setEmail(cliente.getEmail());
-        updatedCliente.setEmpresa(cliente.getEmpresa());
+    @GetMapping(value = "/cliente/edit/{id}")
+    public String editClienteForm(@PathVariable long id, Model model) {
+        Cliente cliente = clienteRepo.findById(id).orElse(null);
+        if (cliente != null) {
+            model.addAttribute("cliente", cliente);
+            return "cliente-form";
+        } else {
+            return "404"; // Certifique-se de ter um template 404.html
+        }
     }
 
-    @DeleteMapping(value = "/delete/{id}")
-    public void deleteCliente(@PathVariable long id){
-        Cliente deletedCliente = clienteRepo.findById(id).get();
-        clienteRepo.delete(deletedCliente);
+    @PostMapping(value = "/cliente/update/{id}")
+    public String updateCliente(@PathVariable long id, @ModelAttribute Cliente cliente) {
+        Cliente existingCliente = clienteRepo.findById(id).orElse(null);
+        if (existingCliente != null) {
+            existingCliente.setNome(cliente.getNome());
+            existingCliente.setEmail(cliente.getEmail());
+            existingCliente.setEmpresa(cliente.getEmpresa());
+            clienteRepo.save(existingCliente);
+            return "redirect:/clientes";
+        } else {
+            return "404"; // Certifique-se de ter um template 404.html
+        }
+    }
+
+    @GetMapping(value = "/cliente/delete/{id}")
+    public String deleteCliente(@PathVariable long id) {
+        Cliente cliente = clienteRepo.findById(id).orElse(null);
+        if (cliente != null) {
+            clienteRepo.delete(cliente);
+        }
+        return "redirect:/clientes";
     }
 }

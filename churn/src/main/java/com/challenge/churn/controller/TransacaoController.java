@@ -5,60 +5,79 @@ import com.challenge.churn.repo.TransacaoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class TransacaoController {
 
     @Autowired
     private TransacaoRepo transacaoRepo;
 
-    @GetMapping(value = "/transacao")
-    public ResponseEntity<List<Transacao>> getTransacoes(){
+    @GetMapping(value = "/transacoes")
+    public String listTransacoes(Model model) {
         List<Transacao> transacoes = transacaoRepo.findAll();
-        return ResponseEntity.ok(transacoes);
+        model.addAttribute("transacoes", transacoes);
+        return "transacoes";
     }
 
     @GetMapping(value = "/transacao/{id}")
-    public ResponseEntity<?> getTransacao(@PathVariable long id){
+    public String getTransacao(@PathVariable long id, Model model) {
         Transacao transacao = transacaoRepo.findById(id).orElse(null);
         if (transacao != null) {
-            return ResponseEntity.ok(transacao);
+            model.addAttribute("transacao", transacao);
+            return "transacao-detail";
         } else {
-            return ResponseEntity.notFound().build();
+            return "404"; // Certifique-se de ter um template 404.html
         }
+    }
+
+    @GetMapping(value = "/transacao/create")
+    public String createTransacaoForm(Model model) {
+        model.addAttribute("transacao", new Transacao());
+        return "transacao-form";
     }
 
     @PostMapping(value = "/transacao/create")
-    public ResponseEntity<?> saveTransacao(@RequestBody Transacao transacao){
+    public String saveTransacao(@ModelAttribute Transacao transacao) {
         transacaoRepo.save(transacao);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return "redirect:/transacoes";
     }
 
-    @PutMapping(value = "/transacao/update/{id}")
-    public ResponseEntity<?> updateTransacao(@PathVariable long id, @RequestBody Transacao transacao){
-        Transacao updatedTransacao = transacaoRepo.findById(id).orElse(null);
-        if (updatedTransacao != null) {
-            updatedTransacao.setCliente(transacao.getCliente());
-            updatedTransacao.setValor(transacao.getValor());
-            updatedTransacao.setData(transacao.getData());
-            transacaoRepo.save(updatedTransacao);
-            return ResponseEntity.ok().build();
+    @GetMapping(value = "/transacao/edit/{id}")
+    public String editTransacaoForm(@PathVariable long id, Model model) {
+        Transacao transacao = transacaoRepo.findById(id).orElse(null);
+        if (transacao != null) {
+            model.addAttribute("transacao", transacao);
+            return "transacao-form";
         } else {
-            return ResponseEntity.notFound().build();
+            return "404"; // Certifique-se de ter um template 404.html
         }
     }
 
-    @DeleteMapping(value = "/transacao/delete/{id}")
-    public ResponseEntity<?> deleteTransacao(@PathVariable long id){
-        Transacao deletedTransacao = transacaoRepo.findById(id).orElse(null);
-        if (deletedTransacao != null) {
-            transacaoRepo.delete(deletedTransacao);
-            return ResponseEntity.ok().build();
+    @PostMapping(value = "/transacao/update/{id}")
+    public String updateTransacao(@PathVariable long id, @ModelAttribute Transacao transacao) {
+        Transacao existingTransacao = transacaoRepo.findById(id).orElse(null);
+        if (existingTransacao != null) {
+            existingTransacao.setCliente(transacao.getCliente());
+            existingTransacao.setValor(transacao.getValor());
+            existingTransacao.setData(transacao.getData());
+            transacaoRepo.save(existingTransacao);
+            return "redirect:/transacoes";
         } else {
-            return ResponseEntity.notFound().build();
+            return "404"; // Certifique-se de ter um template 404.html
         }
+    }
+
+    @GetMapping(value = "/transacao/delete/{id}")
+    public String deleteTransacao(@PathVariable long id) {
+        Transacao transacao = transacaoRepo.findById(id).orElse(null);
+        if (transacao != null) {
+            transacaoRepo.delete(transacao);
+        }
+        return "redirect:/transacoes";
     }
 }

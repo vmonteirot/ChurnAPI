@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Lista de Previsões de Churn</title>
+</head>
+<body>
+<h1>Lista de Previsões de Churn</h1>
+<a href="/churn-prediction/create">Adicionar Nova Previsão de Churn</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Probabilidade de Churn</th>
+        <th>Data de Predição</th>
+        <th>Cliente</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="churnPrediction : ${churnPredictions}">
+        <td th:text="${churnPrediction.id}"></td>
+        <td th:text="${churnPrediction.probabilidadeChurn}"></td>
+        <td th:text="${churnPrediction.dataPredicao}"></td>
+        <td th:text="${churnPrediction.cliente.nome}"></td>
+        <td>
+            <a th:href="@{/churn-prediction/{id}(id=${churnPrediction.id})}">Ver</a>
+            <a th:href="@{/churn-prediction/edit/{id}(id=${churnPrediction.id})}">Editar</a>
+            <a th:href="@{/churn-prediction/delete/{id}(id=${churnPrediction.id})}" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

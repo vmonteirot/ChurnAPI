@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${transacao.id == null} ? 'Nova Transação' : 'Editar Transação'"></title>
+</head>
+<body>
+<h1 th:text="${transacao.id == null} ? 'Adicionar Nova Transação' : 'Editar Transação'"></h1>
+<form th:action="@{${transacao.id == null} ? '/transacao/criar' : '/transacao/atualizar/' + ${transacao.id}}" method="post">
+    <label for="cliente">Cliente:</label>
+    <input type="text" id="cliente" name="cliente" th:value="${transacao.cliente.id}" required>
+
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" name="valor" step="0.01" th:value="${transacao.valor}" required>
+
+    <label for="data">Data:</label>
+    <input type="date" id="data" name="data" th:value="${#dates.format(transacao.data, 'yyyy-MM-dd')}" required>
+
+    <button type="submit" th:text="${transacao.id == null} ? 'Salvar' : 'Atualizar'"></button>
+</form>
+<a href="/transacao">Voltar</a>
+</body>
+</html>

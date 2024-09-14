@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Formulário de Transação</title>
+</head>
+<body>
+<h1>Formulário de Transação</h1>
+<form th:action="@{${transacao.id != null ? '/transacao/update/' + transacao.id : '/transacao/create'}}"
+      th:object="${transacao}" method="post">
+    <label for="valor">Valor:</label>
+    <input type="text" id="valor" th:field="*{valor}" />
+    <label for="data">Data:</label>
+    <input type="text" id="data" th:field="*{data}" />
+    <label for="cliente">Cliente:</label>
+    <select id="cliente" th:field="*{cliente.id}">
+        <!-- Preencher com clientes existentes -->
+        <option th:each="cliente : ${clientes}"
+                th:value="${cliente.id}"
+                th:text="${cliente.nome}"></option>
+    </select>
+    <button type="submit">Salvar</button>
+</form>
+<a href="/transacoes">Voltar para a lista</a>
+</body>
+</html>

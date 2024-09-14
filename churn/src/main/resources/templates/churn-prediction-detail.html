@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Detalhes da Previsão de Churn</title>
+</head>
+<body>
+<h1>Detalhes da Previsão de Churn</h1>
+<p>ID: <span th:text="${churnPrediction.id}"></span></p>
+<p>Probabilidade de Churn: <span th:text="${churnPrediction.probabilidadeChurn}"></span></p>
+<p>Data de Predição: <span th:text="${churnPrediction.dataPredicao}"></span></p>
+<p>Cliente: <span th:text="${churnPrediction.cliente.nome}"></span></p>
+<a href="/churn-predictions">Voltar para a lista</a>
+</body>
+</html>

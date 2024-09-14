@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Formulário de Previsão de Churn</title>
+</head>
+<body>
+<h1>Formulário de Previsão de Churn</h1>
+<form th:action="@{${churnPrediction.id != null ? '/churn-prediction/update/' + churnPrediction.id : '/churn-prediction/create'}}"
+      th:object="${churnPrediction}" method="post">
+    <label for="probabilidadeChurn">Probabilidade de Churn:</label>
+    <input type="text" id="probabilidadeChurn" th:field="*{probabilidadeChurn}" />
+    <label for="dataPredicao">Data de Predição:</label>
+    <input type="date" id="dataPredicao" th:field="*{dataPredicao}" />
+    <label for="cliente">Cliente:</label>
+    <select id="cliente" th:field="*{cliente.id}">
+        <option th:each="cliente : ${clientes}"
+                th:value="${cliente.id}"
+                th:text="${cliente.nome}"></option>
+    </select>
+    <button type="submit">Salvar</button>
+</form>
+<a href="/churn-predictions">Voltar para a lista</a>
+</body>
+</html>
