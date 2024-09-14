@@ -14,4 +14,6 @@ Utilizando uma IDE que suporte Java, como o IntelliJ IDEA, basta clonar o reposi
 
 Toda a documentação se encontra na pasta documentos ou aqui no README.md, caso tenha alguma dúvida.
 
+Link do vídeo de apresentação: ...
+
 ...
