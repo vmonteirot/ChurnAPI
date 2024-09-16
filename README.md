@@ -11,7 +11,7 @@ Repositório destinado a aplicação ChurnAPI da ChurnAnalytics a qual auxiliar�
 * Instruções p/ rodar aplicação:
    * Utilizando uma IDE que suporte Java, como o IntelliJ IDEA, basta clonar o repositório na sua máquina e abrí-lo - em específico a pasta "churn" do repositório. Fazendo isso, basta rodar a aplicação a partir da sua classe MAIN.
 
-* Link do vídeo de apresentação: ...
+* Link do vídeo de apresentação: https://youtu.be/LnWLZwimmeM
 
 Toda a documentação se encontra na pasta documentos ou aqui no README.md, caso tenha alguma dúvida.
 
