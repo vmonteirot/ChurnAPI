@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="/css/global.css">
-    <title>My Thymeleaf Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="/css/global.css">-->
+    <title>Home</title>
 </head>
 <body>
-<h1 th:text="'Hello, ' + ${name} + '!'">Hello, World!</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Churn API</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/empresas">Empresas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/clientes">Clientes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/transacoes">Transações</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/churn_predictions">Predições de Churn</a>
+            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="/about">Sobre</a>-->
+<!--            </li>-->
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Bem-vindo ao Churn API!</h1>
+        <p class="lead">Aqui tu pode gerenciar empresas, transações, clientes e predições de churn.</p>
+        <hr class="my-4">
+        <p>Use a barra de navegação acima para acessar diferentes seções da aplicação.</p>
+        <a class="btn btn-primary btn-lg" href="/empresas" role="button">Gerenciar Empresas</a>
+        <a class="btn btn-secondary btn-lg" href="/clientes" role="button">Gerenciar Clientes</a>
+        <a class="btn btn-secondary btn-lg" href="/transacoes" role="button">Gerenciar Transações</a>
+        <a class="btn btn-secondary btn-lg" href="/churn-predictions" role="button">Gerenciar Predições de Churn</a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
