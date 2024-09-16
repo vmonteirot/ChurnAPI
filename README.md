@@ -28,13 +28,13 @@ API Java para predição de churn usando Spring Boot, Maven e banco de dados Ora
 2. **Configurar o Banco de Dados Oracle**:
 Altere o arquivo application.properties com os dados da sua conexão Oracle:
 
-  spring.datasource.url=jdbc:oracle:thin:@//<HOST>:<PORT>/<DB_NAME>
-  
-  spring.datasource.username=<DB_USERNAME>
-
-  spring.datasource.password=<DB_PASSWORD>
-  
-  spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+      spring.datasource.url=jdbc:oracle:thin:@//<HOST>:<PORT>/<DB_NAME>
+      
+      spring.datasource.username=<DB_USERNAME>
+    
+      spring.datasource.password=<DB_PASSWORD>
+      
+      spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
 
 3. **Build e execução**:
    Use Maven para criar o .jar
