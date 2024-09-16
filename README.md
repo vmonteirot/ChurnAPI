@@ -1,5 +1,6 @@
-# ChurnAPI
-Repositório destinado a aplicação ChurnAPI da ChurnAnalytics a qual auxiliará no desenvolvimento e manutenção da nossa IA para previsão de Churn, feito para o projeto Challenge da **FIAP** em 2024 em conjunto com a empresa **Plusoft**. O intuito é criar uma IA para previsão de churn (evasão de clientes) e usar isso para ajudar no direcionamento da empresa quanto a relação com seus próprios clientes. Para o desenvolvimento em Java o foco é maior na parte de API e manutenção de dados, para que sejam usados pelo modelo de IA.
+# Churn Prediction API
+
+API Java para predição de churn usando Spring Boot, Maven e banco de dados Oracle. Este projeto inclui operações CRUD para `Empresa`, `Cliente`, `Transacao` e `ChurnPrediction`.
 
 * Membros:
    * CARLOS GABRIEL DE FREITAS FLORES FERREIRA - RM97528 - 2TDSPX
@@ -7,12 +8,60 @@ Repositório destinado a aplicação ChurnAPI da ChurnAnalytics a qual auxiliar�
    * KAIQUE GABRIEL TOSCHI - RM551165 - 2TDSPX
    * MACIRANDER SOUZA DE MIRANDA FILHO - RM551416 - 2TDSPF
    * VINICIUS ARIEL MONTEIRO TEIXEIRA - RM98839 - 2TDSPX
+ 
 
-* Instruções p/ rodar aplicação:
-   * Utilizando uma IDE que suporte Java, como o IntelliJ IDEA, basta clonar o repositório na sua máquina e abrí-lo - em específico a pasta "churn" do repositório. Fazendo isso, basta rodar a aplicação a partir da sua classe MAIN.
+## Pré-requisitos
 
-* Link do vídeo de apresentação: https://youtu.be/LnWLZwimmeM
+- Java JDK 17
+- Maven 3.x
+- Banco de dados Oracle
+- Conta na Azure com App Service configurado
+- Repositório no GitHub com Actions para CI/CD
+
+## Como Configurar e Executar Localmente
+
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/vmonteirot/ChurnAPI.git
+   cd ChurnAPI
+
+2. **Configurar o Banco de Dados Oracle**:
+Altere o arquivo application.properties com os dados da sua conexão Oracle:
+  spring.datasource.url=jdbc:oracle:thin:@//<HOST>:<PORT>/<DB_NAME>
+  spring.datasource.username=<DB_USERNAME>
+  spring.datasource.password=<DB_PASSWORD>
+  spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+
+3. **Build e execução**:
+   Use Maven para criar o .jar
+    mvn clean package
+
+   Execute o .jar:
+    java -jar target/churn-<version>.jar
+
+4. **Deploy na Azure**:
+  Configurar o GitHub Secrets no repositório:
+  
+    AZURE_CLIENT_ID
+    AZURE_TENANT_ID
+    AZURE_SUBSCRIPTION_ID
+    AZURE_CLIENT_SECRET
+
+   
+    Deploy com GitHub Actions:
+      O workflow em .github/workflows/main_churnanalytics.yml realiza o deploy automático na Azure após o push para a branch main.
+
+
+##Script DDL:
+O arquivo script.sql contém os comandos SQL para criar as tabelas necessárias no banco Oracle:
+
+##Fluxo de Deploy e CI/CD
+    CI/CD: O projeto está configurado para usar GitHub Actions para automação de build e deploy.
+    Deploy automático: Após cada push para a branch main, o GitHub Actions irá buildar o projeto e fazer o deploy na Azure automaticamente usando o workflow .github/workflows/main_churnanalytics.yml.
+
+    
+    
+    Siga as instruções acima para configurar e executar o projeto localmente ou para realizar o deploy na Azure.
+
 
 Toda a documentação se encontra na pasta documentos ou aqui no README.md, caso tenha alguma dúvida.
-
-...
