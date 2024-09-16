@@ -64,7 +64,6 @@ O arquivo script.sql contém os comandos SQL para criar as tabelas necessárias 
 
     
     
-    Siga as instruções acima para configurar e executar o projeto localmente ou para realizar o deploy na Azure.
-
+Siga as instruções acima para configurar e executar o projeto localmente ou para realizar o deploy na Azure.
 
 Toda a documentação se encontra na pasta documentos ou aqui no README.md, caso tenha alguma dúvida.
