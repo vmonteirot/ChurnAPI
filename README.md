@@ -43,8 +43,11 @@ Altere o arquivo application.properties com os dados da sua conexão Oracle:
   Configurar o GitHub Secrets no repositório:
   
     AZURE_CLIENT_ID
+   
     AZURE_TENANT_ID
+   
     AZURE_SUBSCRIPTION_ID
+   
     AZURE_CLIENT_SECRET
 
    
@@ -52,10 +55,10 @@ Altere o arquivo application.properties com os dados da sua conexão Oracle:
       O workflow em .github/workflows/main_churnanalytics.yml realiza o deploy automático na Azure após o push para a branch main.
 
 
-##Script DDL:
+## Script DDL:
 O arquivo script.sql contém os comandos SQL para criar as tabelas necessárias no banco Oracle:
 
-##Fluxo de Deploy e CI/CD
+## Fluxo de Deploy e CI/CD
     CI/CD: O projeto está configurado para usar GitHub Actions para automação de build e deploy.
     Deploy automático: Após cada push para a branch main, o GitHub Actions irá buildar o projeto e fazer o deploy na Azure automaticamente usando o workflow .github/workflows/main_churnanalytics.yml.
 
