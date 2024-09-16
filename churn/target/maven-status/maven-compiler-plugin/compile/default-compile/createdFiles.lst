@@ -1,0 +1,13 @@
+com\challenge\churn\repo\ClienteRepo.class
+com\challenge\churn\controller\EmpresaController.class
+com\challenge\churn\repo\EmpresaRepo.class
+com\challenge\churn\model\Transacao.class
+com\challenge\churn\model\Empresa.class
+com\challenge\churn\repo\TransacaoRepo.class
+com\challenge\churn\controller\ChurnPredictionController.class
+com\challenge\churn\model\ChurnPrediction.class
+com\challenge\churn\ChurnApiApplication.class
+com\challenge\churn\repo\ChurnPredictionRepo.class
+com\challenge\churn\model\Cliente.class
+com\challenge\churn\controller\ClienteController.class
+com\challenge\churn\controller\TransacaoController.class
