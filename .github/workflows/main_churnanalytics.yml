@@ -1,36 +1,28 @@
 name: Build and deploy JAR app to Azure Web App - churnanalytics
-
 on:
   push:
     branches:
       - main
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'microsoft'
-
       - name: Build with Maven
         run: mvn -f churn/pom.xml clean package
-
       - name: List files in target directory
         run: dir churn/target
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
           path: 'churn/target/*.jar'
-
   deploy:
     runs-on: windows-latest
     needs: build
@@ -39,13 +31,12 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write
-
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: java-app
-
+ 
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -54,11 +45,10 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
           auth-type: 'SERVICE_PRINCIPAL'
-
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'churnanalytics'
           slot-name: 'Production'
-          package: 'churn/target/*.jar'
+          package: '*.jar'  # O arquivo JAR baixado do artefato
